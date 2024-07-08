@@ -6,45 +6,57 @@ const exphbs = require("express-handlebars");
 const routes = require("./controllers");
 const helpers = require("./utils/helpers");
 
+const Sequelize = require('sequelize');
 const sequelize = require("./config/connection");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
+// Initialize Express.js
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Set up Handlebars.js engine with custom helpers
 const hbs = exphbs.create({ helpers });
 
-// Sets session cookie properties
+// Session configuration
 const sess = {
-  secret: "Super secret secret",
+  secret: "Super secret secret", // Used to sign the session ID cookie
   cookie: {
-    maxAge: 1200000,
-    httpOnly: true,
-    secure: false,
-    sameSite: "strict",
+    maxAge: 1200000, // Session timeout in milliseconds (20 minutes)
+    httpOnly: true, // Forces cookies to be used only through HTTP(S) requests
+    secure: false, // Ensures cookies are only sent over HTTPS in production
+    sameSite: "strict", // Mitigates CSRF attacks by restricting when cookies are sent
   },
-  resave: false,
-  saveUninitialized: true,
+  resave: false, // Prevents session data from being re-saved to the session store on each request
+  saveUninitialized: true, // Ensures a session is created even if it's not initialized
   store: new SequelizeStore({
-    db: sequelize,
+    db: sequelize, // Connects sessions table with Sequelize
+    expiration: 86400000, // Optional: Session expiration time in milliseconds (24 hours)
+    tableName: "Session", // Optional: Name of the session table
   }),
 };
 
-app.use(session(sess));
-
-// Inform Express.js on which template engine to use
-app.engine("handlebars", hbs.engine);
-app.set("view engine", "handlebars");
-
 // Middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "public")));
+app.use(session(sess)); // Adds session support to Express.js
+app.engine("handlebars", hbs.engine); // Sets Handlebars as the template engine
+app.set("view engine", "handlebars"); // Uses Handlebars for rendering views
+app.use(express.json()); // Parses incoming requests with JSON payloads
+app.use(express.urlencoded({ extended: true })); // Parses incoming requests with URL-encoded payloads
+app.use(express.static(path.join(__dirname, "public"))); // Serves static files from the "public" directory
 
-app.use(routes);
+// Routes
+app.use(routes); // Mounts all routes defined in ./controllers
 
-// Syncs sequelize with database
-sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log("Now listening"));
-});
+// Syncs Sequelize models with the database and starts the server
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Connection to the database has been established successfully.');
+    sequelize.sync({ force: false }).then(() => {
+      app.listen(PORT, () => {
+        console.log(`Server running on port ${PORT}`);
+      });
+    });
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
+  });

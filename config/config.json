@@ -1,0 +1,10 @@
+{
+    "development": {
+      "username": "root",
+      "password": "new_password",
+      "database": "tech_blog",
+      "host": "localhost",
+      "dialect": "mysql"
+    }
+  }
+  
