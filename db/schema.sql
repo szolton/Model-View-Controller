@@ -1,3 +1,6 @@
 -- Drop and create database
-DROP DATABASE IF EXISTS tech_blog_db;
-CREATE DATABASE tech_blog_db;
+DB_NAME=tech_blog
+DB_USER=root
+DB_PASSWORD=password
+DB_HOST=localhost
+DB_PORT=3001
