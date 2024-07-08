@@ -19,19 +19,19 @@ const hbs = exphbs.create({ helpers });
 
 // Session configuration
 const sess = {
-  secret: "Super secret secret", // Used to sign the session ID cookie
+  secret: process.env.SESSION_SECRET || "Super secret secret", // Use environment variable for secret
   cookie: {
     maxAge: 1200000, // Session timeout in milliseconds (20 minutes)
     httpOnly: true, // Forces cookies to be used only through HTTP(S) requests
-    secure: false, // Ensures cookies are only sent over HTTPS in production
+    secure: false, // Ensure cookies are only sent over HTTPS in production
     sameSite: "strict", // Mitigates CSRF attacks by restricting when cookies are sent
   },
   resave: false, // Prevents session data from being re-saved to the session store on each request
   saveUninitialized: true, // Ensures a session is created even if it's not initialized
   store: new SequelizeStore({
     db: sequelize, // Connects sessions table with Sequelize
-    expiration: 86400000, // Optional: Session expiration time in milliseconds (24 hours)
-    tableName: "Session", // Optional: Name of the session table
+    expiration: 86400000, // Session expiration time in milliseconds (24 hours)
+    tableName: "Session", // Name of the session table in your database
   }),
 };
 
@@ -59,4 +59,5 @@ sequelize
   })
   .catch(err => {
     console.error('Unable to connect to the database:', err);
+    // Handle database connection errors here
   });

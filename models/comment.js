@@ -25,14 +25,14 @@ Comment.init(
     user_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "user",
+        model: "User", // Ensure correct casing and singular form
         key: "id",
       },
     },
     blogPost_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "blogPost",
+        model: "BlogPost", // Ensure correct casing and singular form
         key: "id",
       },
     },
