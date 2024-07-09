@@ -1,20 +1,20 @@
+{{!-- homepage.handlebars --}}
 {{! Homepage }}
-{{! Loop over each object in the blogPosts array }}
 <div class="container">
   <div class="row homepage-main">
     {{#each blogPosts as |blogPost|}}
       <div class="row mb-4 project card text-dark shadow">
         <div class="card-header">
-          <h3>
+          <h3 class="descrip-title">
             <a href="/blogPost/{{blogPost.id}}">{{blogPost.title}}</a>
           </h3>
-          <p>Created by
+          <p><h6>Created by</h6>
             {{blogPost.user.name}}
-            on
+            <h6>on
             {{format_date blogPost.date_created}}</p>
-        </div>
+        </div></h6>
         <div class="card-body">
-          <p>{{blogPost.description}}</p>
+          <p class="descrip">{{blogPost.description}}</p>
         </div>
       </div>
     {{/each}}

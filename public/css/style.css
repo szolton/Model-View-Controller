@@ -61,6 +61,7 @@ header {
     color: #84a59d;
     padding: 0 10px; /* Add padding for spacing */
     text-decoration: none; /* Remove underline from links */
+    font-family: 'Heavitas';
     
   }
   
@@ -128,4 +129,17 @@ header {
 
   .form-text {
     font-family: Arial, Helvetica, sans-serif;
+  }
+
+  h6 {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .descrip {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .descrip-title {
+    font-family: 'Heavitas';
+    color: #3B4E59;
   }
