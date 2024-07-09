@@ -1,19 +1,25 @@
 /* General page styles */
 
 header {
-    font-family: "Jomolhari", serif;
+    font-family: Arial, Helvetica, sans-serif
   }
   
   body {
-    background-color: #a28089;
+    background-color: #3B4E59;
   }
   
   h1 {
-    font-family: "Jomolhari", serif;
-    background-color: teal;
-    color: #ffb3c6;
+    font-family: 'Heavitas';
+    background-color: #F26B83;
+    color: white;
     padding: 16px;
     margin-bottom: 5px;
+  }
+
+  h2 {
+    font-family: 'Heavitas', sans-serif;
+    color: #3B4E59;
+    padding-top: 10px;
   }
   
   #blogName {
@@ -23,7 +29,7 @@ header {
   main {
     font-family: "Jomolhari", serif;
     margin-top: -5px;
-    background-color: #a28089;
+    background-color: #F5DDDB;
   }
   
   .homepage-main {
@@ -41,8 +47,35 @@ header {
   /* Nav styles */
   
   .navBar {
-    background-color: #00a0a0;
+    background-color: #F5DDDB;
   }
+
+  .navBar nav {
+    display: flex; /* Arrange children in a row */
+    justify-content: space-around; /* Optional: space out the items evenly */
+    align-items: center; /* Center items vertically */
+    background-color: #F5DDDB;
+  }
+  
+  .nav-link {
+    color: #84a59d;
+    padding: 0 10px; /* Add padding for spacing */
+    text-decoration: none; /* Remove underline from links */
+    
+  }
+  
+  .no-button {
+    background: none; /* Remove default button background */
+    border: none; /* Remove default button border */
+    color: #84a59d; /* Match the color of the links */
+    padding: 0 10px; /* Add padding for spacing */
+    cursor: pointer; /* Change cursor to pointer */
+  }
+  
+  .no-button:hover, .nav-link:hover {
+    color: #3a7a7a; /* Change color on hover */
+  }
+  
   
   #logout {
     background-color: #84a59d;
@@ -59,12 +92,18 @@ header {
   #email-signup,
   #password-signup {
     background-color: #e5eaf5;
+    font-family: Arial, Helvetica, sans-serif;
   }
   
   /* Button styles */
   
   .btn {
     background-color: #ffb3c6;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .btn:hover {
+    background-color: #F26B83;
   }
   
   /* Card styles */
@@ -85,4 +124,8 @@ header {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     transform: scale(1.02);
     transition: all 0.3s ease;
+  }
+
+  .form-text {
+    font-family: Arial, Helvetica, sans-serif;
   }

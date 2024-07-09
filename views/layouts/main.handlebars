@@ -28,13 +28,13 @@
     <header class="navBar">
       <nav>
         {{#if logged_in}}
-          <a href="/">Home</a>
-          <a href="/dashboard">Dashboard</a>
+          <a href="/" class="nav-link">Home</a>
+          <a href="/dashboard" class="nav-link">Dashboard</a>
           <button class="no-button" id="logout">Logout</button>
         {{else}}
-          <a href="/">Home</a>
-          <a href="/dashboard">Dashboard</a>
-          <a href="/login">Login</a>
+          <a href="/" class="nav-link">Home</a>
+          <a href="/dashboard" class="nav-link">Dashboard</a>
+          <a href="/login" class="nav-link">Login</a>
         {{/if}}
       </nav>
     </header>
