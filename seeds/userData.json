@@ -1,17 +1,26 @@
 [
-    {
-      "name": "Janis Joplin",
-      "email": "takeanotherlittlepieceofmyheart@hotmail.com",
+  {
+      "id": 1,
+      "name": "Hayley Williams",
+      "email": "miserybusiness@gmail.com",
       "password": "password1"
-    },
-    {
-      "name": "Jerry Garcia",
-      "email": "dancingbears@gmail.com",
+  },
+  {
+      "id": 2,
+      "name": "Pete Wentz",
+      "email": "saturday@aol.com",
       "password": "password12"
-    },
-    {
-      "name": "John Lennon",
-      "email": "imagine@aol.com",
+  },
+  {
+      "id": 3,
+      "name": "Gerard Way",
+      "email": "blackparade@gmail.com",
       "password": "password123"
-    }
-  ]
+  },
+  {
+      "id": 7,
+      "name": "Patrick Stump",
+      "email": "ilikesinging@gmail.com",
+      "password": "secure-password"
+  }
+]
