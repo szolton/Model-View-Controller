@@ -11,7 +11,7 @@ AS A developer who writes about tech
 I WANT a CMS-style blog site
 SO THAT I can publish articles, blog posts, and my thoughts and opinions
 
-I began by doing research -- here are some of my sources for this assignment. Sources: https://www.youtube.com/watch?v=m9OSBJaQTlM&ab_channel=PortEXE, https://www.codingnepalweb.com/weather-app-project-html-javascript/, https://home.openweathermap.org/, https://www.youtube.com/watch?v=MIYQR-Ybrn4&ab_channel=GreatStack
+I began by doing research -- here are some of my sources for this assignment. Sources: https://www.youtube.com/watch?v=DUg2SWWK18I, https://developer.mozilla.org/en-US/docs/Glossary/MVC, and class materials.
 
 I began by making a skeleton file system and putting that in place, as seen here.
 
