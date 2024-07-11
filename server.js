@@ -5,10 +5,11 @@ const session = require("express-session");
 const exphbs = require("express-handlebars");
 const routes = require("./controllers");
 const helpers = require("./utils/helpers");
-
 const Sequelize = require('sequelize');
 const sequelize = require("./config/connection");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
+const withAuth = require("./utils/auth");
+const { User } = require("./models"); // Make sure you have a User model
 
 // Initialize Express.js
 const app = express();
@@ -43,6 +44,40 @@ app.use(express.json()); // Parses incoming requests with JSON payloads
 app.use(express.urlencoded({ extended: true })); // Parses incoming requests with URL-encoded payloads
 app.use(express.static(path.join(__dirname, "public"))); // Serves static files from the "public" directory
 
+// Sample login route
+app.post('/login', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    console.log("Attempting to log in with:", email);
+
+    // Example user authentication logic (replace with your own)
+    const user = await User.findOne({ where: { email } });
+    if (!user) {
+      console.log("User not found");
+      return res.status(401).send('Login failed. Please check your credentials.');
+    }
+
+    // Assume your User model has a method to compare passwords
+    const validPassword = await user.checkPassword(password);
+    if (!validPassword) {
+      console.log("Invalid password");
+      return res.status(401).send('Login failed. Please check your credentials.');
+    }
+
+    req.session.logged_in = true;
+    req.session.user_id = user.id;
+    res.redirect('/dashboard');
+  } catch (error) {
+    console.error("Error during login:", error);
+    res.status(500).json({ message: "An error occurred during login." });
+  }
+});
+
+// Sample protected route using withAuth middleware
+app.get('/dashboard', withAuth, (req, res) => {
+  res.render('dashboard'); // Render the dashboard or any other protected route
+});
+
 // Routes
 app.use(routes); // Mounts all routes defined in ./controllers
 
@@ -61,3 +96,5 @@ sequelize
     console.error('Unable to connect to the database:', err);
     // Handle database connection errors here
   });
+
+module.exports = app; // Export the app for testing
